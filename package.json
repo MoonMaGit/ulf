@@ -1,0 +1,22 @@
+{
+  "name": "ulf",
+  "version": "1.0.0",
+  "description": "update! link! fragment!",
+  "main": "index.js",
+  "scripts": {
+    "test": "http-server ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MoonMaGit/ulf.git"
+  },
+  "author": "BlackMoon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MoonMaGit/ulf/issues"
+  },
+  "homepage": "https://github.com/MoonMaGit/ulf#readme",
+  "dependencies": {
+    "http-server": "^14.0.0"
+  }
+}
