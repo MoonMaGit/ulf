@@ -1,3 +1,10 @@
+function logCor(msg){
+    console.log(`%c${msg}`, 'color: green')
+}
+function logErr(msg){
+    console.log(`%c${msg}`, 'color: red')
+}
+
 class Test{
     constructor(des){
         this.des = des
@@ -20,7 +27,12 @@ class Test{
             console.timeEnd(this.des)
             this.isRun = false
             console.log('sum: ' + this.sum)
-            console[this.errorSum? 'error': 'log'](`error: ${this.errorSum} (${(this.errorSum/this.sum*100).toFixed(3)}%)`)
+            const msg = `error: ${this.errorSum} (${(this.errorSum/this.sum*100).toFixed(3)}%)`
+            if(this.errorSum){
+                logErr(msg)
+            }else{
+                logCor(msg)
+            }
             console.log('')
             this.final()
             return
@@ -33,10 +45,17 @@ class Test{
 
             this.sum ++
 
-            const next = (errorMsg)=>{
+            let done = false
+            const next = (errorMsg, trace)=>{
+                if(done) return
+                
+                done = true
                 if(errorMsg){
                     this.errorSum ++
-                    console.error(errorMsg)
+                    logErr(errorMsg)
+                    if(trace){
+                        console.trace(errorMsg)
+                    }
                 }
                 console.timeEnd(flag)
                 this.index ++
@@ -44,18 +63,24 @@ class Test{
             }
 
             try{
-                todo(()=>next(), (msg='UNKNOWN')=>next(msg))
+                if(todo){
+                    todo(()=>next(), (msg='UNKNOWN')=>next(msg))
+                }else{
+                    console.warn('no test body: ', title)
+                    next()
+                }
             }catch(e){
-                next(e)
+                next(e, true)
             }
         }, 0)
     }
 
     once(test){
         this.list.push(test)
-        if(!this.isRun){
+        if(this.list.length === 1){
             this.first()
         }
+        return this
     }
 }
 
