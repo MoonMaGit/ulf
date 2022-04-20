@@ -31,7 +31,7 @@ export const Chain = class {
         return contained
     }
     delete(data){
-        this.remove(this.contain(data))
+        return this.remove(this.contain(data))
     }
     before(node, flag=this.root) {
         if (!Chain.isNode(node)) {
