@@ -1,6 +1,6 @@
 import {Chain} from '../base/index.js'
 
-class Listener{
+export const Listener = class{
     constructor(){
         this.root = new Map()
     }
@@ -40,5 +40,3 @@ class Listener{
         })
     }
 }
-
-export default Listener

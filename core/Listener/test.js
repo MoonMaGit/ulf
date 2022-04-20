@@ -1,5 +1,5 @@
 import { getTest } from "../../test/index.js"
-import Listener from "./index.js"
+import { Listener } from "./index.js"
 
 getTest('Listener')
 .once([

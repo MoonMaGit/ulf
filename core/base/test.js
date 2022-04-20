@@ -209,7 +209,12 @@ getTest('Chan')
             w('包含错误')
         }
 
-        chan.delete(2)
+        if(!chan.delete(2)){
+            w('删除存在')
+        }
+        if(chan.delete(2)){
+            w('删除已删除')
+        }
         if(getStr() !== '13'){
             w('删除错误')
         }
