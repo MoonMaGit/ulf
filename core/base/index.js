@@ -33,6 +33,9 @@ export const Chain = class {
     delete(data){
         return this.remove(this.contain(data))
     }
+    isEmpty(){
+        return this.root === null
+    }
     before(node, flag=this.root) {
         if (!Chain.isNode(node)) {
             return false

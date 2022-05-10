@@ -183,12 +183,26 @@ getTest('Chan')
     }
 ])
 .once([
-    'push trave contain delete',
+    'push trave contain delete isEmpty',
     (c, w)=>{
         const chan = new Chain()
+        
+        if(!chan.isEmpty()){
+            w('应为空')
+        }
+        
         const n1 = chan.push(1)
+        
+        if(chan.isEmpty()){
+            w('包含1')
+        }
+        
         const n2 = chan.push(2)
         const n3 = chan.push(3)
+        
+        if(chan.isEmpty()){
+            w('不应为空')
+        }
 
         function getStr(){
             let str = ''
@@ -228,6 +242,10 @@ getTest('Chan')
         }
         if(chan.contain(1)||chan.contain(2)||chan.contain(3)){
             w('包含错误')
+        }
+        
+        if(!chan.isEmpty()){
+            w('已全部删除')
         }
 
         c()
